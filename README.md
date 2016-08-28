@@ -17,7 +17,7 @@ apt-get install smartmontools
 chmod +s /usr/sbin/smartctl
 ```
 
-* Install pySMART to the custom datadog embedded python location:
+* Install pySMART to the custom datadog embedded python location (seriously?!)
 ```
 /opt/datadog/embedded/bin/pip install pysmart
 ```
