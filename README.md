@@ -1,9 +1,9 @@
 # datadog-smartmon
-DataDog plugin to report hard drive metrics
+Datadog plugin to report hard drive metrics
 
 ## Introduction
 
-A simple DataDog plugin to report hard drive stats. Uses pySMART to discover all hard drives and pushes all S.M.A.R.T information for each drive to DataDog. Useful for monitoring a file server or home nas.
+A simple Datadog plugin to report hard drive stats. Uses pySMART to discover all hard drives and pushes all S.M.A.R.T information for each drive to DataDog. Useful for monitoring a file server or home nas.
 
 ## Instructions
 
@@ -28,4 +28,4 @@ chmod +s /usr/sbin/smartctl
     cp smartmon.py /etc/dd-agent/checks.d/
 ```
 
-* Restart the DataDog agent
+* Restart the Datadog agent
