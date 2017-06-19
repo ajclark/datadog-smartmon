@@ -19,7 +19,7 @@ chmod +s /usr/sbin/smartctl
 
 * Install pySMART to the custom datadog embedded python location (seriously?!)
 ```
-/opt/datadog/embedded/bin/pip install pysmart
+/opt/datadog-agent/embedded/bin/pip install pysmart
 ```
    
 * Copy over the custom check and check config file to the DataDog agent install directory   
