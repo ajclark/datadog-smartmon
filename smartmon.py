@@ -12,8 +12,11 @@ class SmartMon(AgentCheck):
         devlist = DeviceList()
 
         for dev in range(len(devlist.devices)):
+            self.gauge("smartmon.ReallocatedSectors", devlist.devices[dev].diags['Reallocated_Sector_Ct'], device_name=devlist.devices[dev].name)
+            self.gauge("smartmon.PowerOnHours", devlist.devices[dev].diags['Power_On_Hours'], device_name=devlist.devices[dev].name)
+            self.gauge("smartmon.Assessment", int(devlist.devices[dev].assessment == 'PASS'), device_name=devlist.devices[dev].name)
             for attribute in range(len(devlist.devices[dev].attributes)):
                 if devlist.devices[dev].attributes[attribute] is not None:
                     check_namespace = "smartmon.%s" % (devlist.devices[dev].attributes[attribute].name,)
-                    self.gauge(check_namespace, devlist.devices[dev].attributes[attribute].raw, tags=[devlist.devices[dev].name])
+                    self.gauge(check_namespace, devlist.devices[dev].attributes[attribute].raw, device_name=devlist.devices[dev].name)
 
