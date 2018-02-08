@@ -5,6 +5,8 @@ Datadog plugin to report hard drive metrics
 
 A simple Datadog plugin to report hard drive stats. Uses pySMART to discover all hard drives and pushes all S.M.A.R.T information for each drive to DataDog. Useful for monitoring a file server or home nas.
 
+![Alt text](/datadog-screenshot.png "Datadog screenshot")
+
 ## Instructions
 
 * Install smartmon tools
