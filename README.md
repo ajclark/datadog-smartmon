@@ -26,8 +26,9 @@ chmod +s /usr/sbin/smartctl
    
 * Copy over the custom check and check config file to the DataDog agent install directory   
 ```
-    cp smartmon.yaml /etc/dd-agent/conf.d/
-    cp smartmon.py /etc/dd-agent/checks.d/
+cp smartmon.yaml /etc/datadog-agent/conf.d/
+cp smartmon.py /etc/datadog-agent/checks.d/
+
 ```
 
 * Restart the Datadog agent
