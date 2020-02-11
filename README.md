@@ -28,7 +28,6 @@ chmod +s /usr/sbin/smartctl
 ```
 cp smartmon.yaml /etc/datadog-agent/conf.d/
 cp smartmon.py /etc/datadog-agent/checks.d/
-
 ```
 
 * Restart the Datadog agent
