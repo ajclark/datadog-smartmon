@@ -12,16 +12,18 @@ class SmartMon(AgentCheck):
         devlist = DeviceList()
 
         for dev in range(len(devlist.devices)):
-            try:
-                self.gauge("smartmon.Reallocated_Sector_Ct", devlist.devices[dev].diags['Reallocated_Sector_Ct'], device_name=devlist.devices[dev].name)
-            except KeyError:
-                pass
-            try:
-                self.gauge("smartmon.Power_On_Hours", devlist.devices[dev].diags['Power_On_Hours'], device_name=devlist.devices[dev].name)
-            except KeyError:
-                pass
-            self.gauge("smartmon.Assessment", int(devlist.devices[dev].assessment == 'PASS'), device_name=devlist.devices[dev].name)
-            for attribute in range(len(devlist.devices[dev].attributes)):
-                if devlist.devices[dev].attributes[attribute] is not None:
-                    check_namespace = "smartmon.%s" % (devlist.devices[dev].attributes[attribute].name,)
-                    self.gauge(check_namespace, devlist.devices[dev].attributes[attribute].raw, device_name=devlist.devices[dev].name)
+            device = devlist.devices[dev]
+            tags = [f"device:/dev/{device.name}",
+                    f"capacity:{device.capacity}",
+                    f"interface:{device.interface}",
+                    f"serial:{device.serial}",
+                    f"model:{device.model}",
+                    f"is_ssd:{device.is_ssd}",]
+
+            # overall pass/fail check
+            self.gauge("smartmon.Assessment", int(device.assessment == 'PASS'), tags=tags)
+
+            for attribute in range(len(device.attributes)):
+                if device.attributes[attribute] is not None:
+                    attr = device.attributes[attribute]
+                    self.gauge(f"smartmon.{attr.name.lower()}", attr.raw, tags=tags)
