@@ -8,3 +8,12 @@ instances:
     #
 
     min_collection_interval: 300
+
+    ## @param labels - list of strings - optional
+    ## A list of labels mapped to the device names 
+    ##
+    #
+    # labels:
+    #   sda: root
+    #   sdb: opt
+    #   sdc: data

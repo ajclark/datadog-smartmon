@@ -10,6 +10,7 @@ class SmartMon(AgentCheck):
 
     def check(self, instance):
         devlist = DeviceList()
+        labels = instance.get("labels")
 
         for dev in range(len(devlist.devices)):
             device = devlist.devices[dev]
@@ -19,6 +20,9 @@ class SmartMon(AgentCheck):
                     f"serial:{device.serial}",
                     f"model:{device.model}",
                     f"is_ssd:{device.is_ssd}",]
+
+            if labels is not None and device.name in labels:
+                tags.append(f"label:{labels[device.name]}")
 
             # overall pass/fail check
             self.gauge("smartmon.Assessment", int(device.assessment == 'PASS'), tags=tags)
