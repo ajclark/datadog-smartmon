@@ -25,9 +25,9 @@ class SmartMon(AgentCheck):
                 tags.append(f"label:{labels[device.name]}")
 
             # overall pass/fail check
-            self.gauge("smartmon.Assessment", int(device.assessment == 'PASS'), tags=tags)
+            self.gauge("smartmon.assessment", int(device.assessment == 'PASS'), tags=tags)
 
             for attribute in range(len(device.attributes)):
                 if device.attributes[attribute] is not None:
                     attr = device.attributes[attribute]
-                    self.gauge(f"smartmon.{attr.name.lower()}", attr.raw, tags=tags)
+                    self.gauge(f"smartmon.{attr.name.lower()}", attr.raw.split()[0], tags=tags)
