@@ -49,7 +49,7 @@ class SmartMon(AgentCheck):
                 self.gauge(f"smartmon.power_on_hours", nvme.powerOnHours ,tags=tags)
                 self.gauge(f"smartmon.temperature", nvme.temperature ,tags=tags)
                 self.gauge(f"smartmon.tests", len(nvme.tests) ,tags=tags)
-                self.gauge(f"smartmon.unsafeShutdowns", nvme.unsafeShutdowns ,tags=tags)
+                self.gauge(f"smartmon.unsafe_shutdowns", nvme.unsafeShutdowns ,tags=tags)
                 self.gauge(f"smartmon.warning_temperature_time", nvme.warningTemperatureTime ,tags=tags)
 
             for attribute in range(len(device.attributes)):
