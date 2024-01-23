@@ -27,6 +27,31 @@ class SmartMon(AgentCheck):
             # overall pass/fail check
             self.gauge("smartmon.assessment", int(device.assessment == 'PASS'), tags=tags)
 
+            if device.dev_interface is "nvme":
+                nvme = device.if_attributes
+                self.gauge(f"smartmon.available_spare", nvme.availableSpare ,tags=tags)
+                self.gauge(f"smartmon.available_spare_threshold", nvme.availableSpareThreshold ,tags=tags)
+                self.gauge(f"smartmon.bytes_read", nvme.bytesRead ,tags=tags)
+                self.gauge(f"smartmon.bytes_written", nvme.bytesWritten ,tags=tags)
+                self.gauge(f"smartmon.controller_busy_time", nvme.controllerBusyTime ,tags=tags)
+                self.gauge(f"smartmon.critial_warning", nvme.critialWarning ,tags=tags)
+                self.gauge(f"smartmon.critical_temperature_time", nvme.criticalTemperatureTime ,tags=tags)
+                self.gauge(f"smartmon.critical_warning", nvme.criticalWarning ,tags=tags)
+                self.gauge(f"smartmon.data_units_read", nvme.dataUnitsRead ,tags=tags)
+                self.gauge(f"smartmon.data_units_written", nvme.dataUnitsWritten ,tags=tags)
+                self.gauge(f"smartmon.error_entries", nvme.errorEntries ,tags=tags)
+                self.gauge(f"smartmon.errors", len(nvme.errors) ,tags=tags)
+                self.gauge(f"smartmon.host_read_commands", nvme.hostReadCommands ,tags=tags)
+                self.gauge(f"smartmon.host_write_commands", nvme.hostWriteCommands ,tags=tags)
+                self.gauge(f"smartmon.integrity_errors", nvme.integrityErrors ,tags=tags)
+                self.gauge(f"smartmon.percentage_used", nvme.percentageUsed ,tags=tags)
+                self.gauge(f"smartmon.power_cycles", nvme.powerCycles ,tags=tags)
+                self.gauge(f"smartmon.power_on_hours", nvme.powerOnHours ,tags=tags)
+                self.gauge(f"smartmon.temperature", nvme.temperature ,tags=tags)
+                self.gauge(f"smartmon.tests", len(nvme.tests) ,tags=tags)
+                self.gauge(f"smartmon.unsafeShutdowns", nvme.unsafeShutdowns ,tags=tags)
+                self.gauge(f"smartmon.warning_temperature_time", nvme.warningTemperatureTime ,tags=tags)
+
             for attribute in range(len(device.attributes)):
                 if device.attributes[attribute] is not None:
                     attr = device.attributes[attribute]
