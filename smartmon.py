@@ -27,7 +27,7 @@ class SmartMon(AgentCheck):
             # overall pass/fail check
             self.gauge("smartmon.assessment", int(device.assessment == 'PASS'), tags=tags)
 
-            if device.dev_interface is "nvme":
+            if device.dev_interface == "nvme":
                 nvme = device.if_attributes
                 self.gauge(f"smartmon.available_spare", nvme.availableSpare ,tags=tags)
                 self.gauge(f"smartmon.available_spare_threshold", nvme.availableSpareThreshold ,tags=tags)
