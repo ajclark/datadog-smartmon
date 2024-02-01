@@ -14,6 +14,11 @@ A simple Datadog plugin to report hard drive stats. Uses pySMART to discover all
 apt-get install smartmontools
 ```
 
+* Ubuntu 22.04 or later need aditional package
+```
+apt-get install exfatprogs
+```
+
 * Allow `smartctl` to be executed by non-root users (sorry!)
 ```
 chmod +s /usr/sbin/smartctl
