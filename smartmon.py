@@ -34,7 +34,7 @@ class SmartMon(AgentCheck):
                 self.gauge(f"smartmon.bytes_read", nvme.bytesRead ,tags=tags)
                 self.gauge(f"smartmon.bytes_written", nvme.bytesWritten ,tags=tags)
                 self.gauge(f"smartmon.controller_busy_time", nvme.controllerBusyTime ,tags=tags)
-                self.gauge(f"smartmon.critial_warning", nvme.critialWarning ,tags=tags)
+                self.gauge(f"smartmon.critical_warning", nvme.criticalWarning ,tags=tags)
                 self.gauge(f"smartmon.critical_temperature_time", nvme.criticalTemperatureTime ,tags=tags)
                 self.gauge(f"smartmon.critical_warning", nvme.criticalWarning ,tags=tags)
                 self.gauge(f"smartmon.data_units_read", nvme.dataUnitsRead ,tags=tags)
